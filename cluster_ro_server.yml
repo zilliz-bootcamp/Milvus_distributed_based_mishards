@@ -1,0 +1,70 @@
+# Copyright (C) 2019-2020 Zilliz. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance
+# with the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License
+# is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+# or implied. See the License for the specific language governing permissions and limitations under the License.
+
+version: 0.5
+
+cluster:
+  enable: true
+  role: ro
+
+
+general:
+  timezone: UTC+8
+  meta_uri: mysql://root:milvusroot@192.168.1.85:3306/milvus
+
+
+network: 
+  bind.address: 0.0.0.0
+  bind.port: 19530
+  http.enable: true
+  http.port: 19121
+
+
+storage:
+  path: /var/lib/milvus
+  auto_flush_interval: 1
+
+
+wal:
+  enable: false
+  recovery_error_ignore: false
+  buffer_size: 256MB
+  path: /var/lib/milvus/wal
+
+
+cache:
+  cache_size: 4GB
+  insert_buffer_size: 1GB
+  preload_collection:
+
+
+gpu:
+  enable: true
+  cache_size: 1GB
+  gpu_search_threshold: 900
+  search_devices:
+    - gpu0
+  build_index_devices:
+    - gpu0
+
+
+logs:
+  level: debug
+  trace.enable: true
+  path: /var/lib/milvus/logs
+  max_log_file_size: 1024MB
+  log_rotate_num: 0
+
+
+metric:
+  enable: false
+  address: 127.0.0.1
+  port: 9091
